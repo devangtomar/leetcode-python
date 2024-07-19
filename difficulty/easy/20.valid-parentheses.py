@@ -8,19 +8,15 @@
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
+        dict = {"(": ")", "[": "]", "{": "}"}
         stack = []
+
         for char in s:
-            if char in '{([':
+            if char in dict.keys():
                 stack.append(char)
-            else:
-                if (
-                    not stack
-                    or (char == ')' and stack[-1] != '(')
-                    or (char == '}' and stack[-1] != '{')
-                    or (char == ']' and stack[-1] != '[')
-                ):
+            elif char in dict.values():
+                if not stack or dict[stack.pop()] != char:
                     return False
-                stack.pop()
         return not stack
 
 # @lc code=end
