@@ -7,8 +7,12 @@
 # @lc code=start
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
+        result = 0
+        for char in s:
+            result ^= ord(char)
         for char in t:
-            if char not in s or s.count(char) != t.count(char):
-                return char
+            result ^= ord(char)
+        return chr(result)
+
 # @lc code=end
 
